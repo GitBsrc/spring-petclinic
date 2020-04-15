@@ -1,27 +1,27 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.6.3'
+        maven 'Apache 3.6.3'
     }
     stages {
         stage('Build') {
             steps {
                 slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                withEnv( ["PATH+MAVEN=Maven 3.6.3/bin"] ) {
+                withEnv( ["PATH+MAVEN=Apache 3.6.3/bin"] ) {
                     bat 'mvn clean' 
                 }
             }
         }
         stage('Test') {
             steps {
-                withEnv( ["PATH+MAVEN=Maven 3.6.3/bin"] ) {
+                withEnv( ["PATH+MAVEN=Apache 3.6.3/bin"] ) {
                     bat 'mvn test' 
                 }
             }
         }
         stage('Package') {
             steps {
-                withEnv( ["PATH+MAVEN=Maven 3.6.3/bin"] ) {
+                withEnv( ["PATH+MAVEN=Apache 3.6.3/bin"] ) {
                     bat 'mvn package' 
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
                 }
             }
             steps {
-                withEnv( ["PATH+MAVEN=Maven 3.6.3/bin"] ) {
+                withEnv( ["PATH+MAVEN=Apache 3.6.3/bin"] ) {
                     bat 'mvn deploy' 
                 }
             }
