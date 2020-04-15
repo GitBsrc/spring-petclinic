@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Package') {
             steps {
-                bat './mvnw package' 
+                bat './mvnw compile' 
             }
         }
         stage('Deploy') {
